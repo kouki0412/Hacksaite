@@ -25,11 +25,11 @@ connection = MySQLdb.connect(
 
 try:
 
-	session_id = cookie["session_id"].value
+	userid = cookie["userid"].value
 
 except KeyError:
 
-	session_id = ''
+	userid = 'temp'
 	
 
 if ( os.environ['REQUEST_METHOD'] == "GET"):
@@ -164,7 +164,7 @@ elif ( os.environ['REQUEST_METHOD'] == "POST" ):
 
 	cursor = connection.cursor()
 	
-	sql    = "insert into `itemdata`(`userid`,`comments`,`title`,`prace`,`status`,`address`,`mailways`,`imgname`) values('1','"+comments+"','"+title+"','"+price+"','"+status+"','"+address+"','"+mailsways+"','"+fileitem.filename+"');"
+	sql    = "insert into `itemdata`(`userid`,`comments`,`title`,`prace`,`status`,`address`,`mailways`,`imgname`) values('"+userid +"','"+comments+"','"+title+"','"+price+"','"+status+"','"+address+"','"+mailsways+"','"+fileitem.filename+"');"
 	cursor.execute(sql)
 	
 	connection.commit()        
@@ -184,9 +184,11 @@ elif ( os.environ['REQUEST_METHOD'] == "POST" ):
 			
 		</head>
 		<body>
-			<p>出品完了しました！%s</p>
+			<p>出品完了しました！</p>
+			<a href='./top_page.cgi' alt = "トップページに戻る">
 		</body>
 		
-	"""%(sql)
+	"""
+	
 		
 print(htmlText.encode("utf-8", 'ignore').decode('utf-8'))

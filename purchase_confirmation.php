@@ -51,9 +51,17 @@
         echo '<h1>クレジットカード未登録</h1>';
         echo '<div>クレジットカード情報が登録されていません。</div>';
         echo '<a href="register_card.php">クレジットカード登録</a>';
-        echo '<a href="purchase.php">戻る</a>';
+	echo '<a href="top_page.cgi">戻る</a>';
     }
     ?>
+    <h2>購入内容の確認</h2>
+    <!-- 購入内容の表示 -->
+    <!-- その他の表示項目やボタンを追加 -->
+    
+    <form action="purchase_complete.php" method="post">
+        <!-- 購入に関するフォーム項目 -->
+        <!-- 例: 配送先の入力フォーム、購入確定ボタンなど -->
+        <input type="submit" value="購入確定">
 </body>
 </html>
 
