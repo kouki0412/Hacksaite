@@ -56,11 +56,9 @@
         $user = $_POST['userid'];
         $password = $_POST['pass'];
         // SQLの準備（接続先、DB名、DBログインユーザ名、パスワード・・・・）
-        $pdo = new PDO("mysql:host=localhost;dbname=ShopData;charset=utf8", "user1", "passwordA1!", [PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING]);
-        $sql = $pdo->prepare("SELECT * FROM userinfo WHERE userid = :userid AND password = :pass");
-        // SQL文への値の設定
-        $sql->bindValue(':userid', $user, PDO::PARAM_STR);
-        $sql->bindValue(':pass', $password, PDO::PARAM_STR);
+        $pdo = new PDO("mysql:host=localhost;dbname=ShopData;charset=utf8", "user1", "passwordA1!");
+        $sql = $pdo->prepare("SELECT * FROM userinfo WHERE userid = '". $user ."' AND password = '" . $password ."';");
+
         // SQL文の実行
         $sql->execute();
         // 結果の取得
@@ -88,4 +86,3 @@
     </div>
 </body>
 </html>
-

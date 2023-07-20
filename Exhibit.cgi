@@ -68,8 +68,8 @@ if ( os.environ['REQUEST_METHOD'] == "GET"):
 			<h1>新しく出品する</h1>
 			<form action="./Exhibit.cgi" name = "f1" method="post" enctype="multipart/form-data">
 			<input type="file" name="imgfile">
-			<p>コメント</p>
-			<textarea cols="30" rows="5" name="comments"></textarea><br>
+			<p>商品説明</p>
+			<textarea cols="30" rows="5" name="comments"　required></textarea><br>
 			<p>商品情報</p>
 			<p>商品名:</p><input type="text" name="title" required>
 			<p>価格:</p><input type="number" min="300" name="price" required>
@@ -158,23 +158,47 @@ elif ( os.environ['REQUEST_METHOD'] == "POST" ):
 	status = form.getfirst('status') 
 	address = form.getvalue("address") 
 	mailsways = form.getvalue("mailways") 
-	
-	target_dir = "./Goods_Photo/"
 	fileitem = form["imgfile"]
 
 	cursor = connection.cursor()
 	
 	sql    = "insert into `itemdata`(`userid`,`comments`,`title`,`prace`,`status`,`address`,`mailways`,`imgname`) values('"+userid +"','"+comments+"','"+title+"','"+price+"','"+status+"','"+address+"','"+mailsways+"','"+fileitem.filename+"');"
 	cursor.execute(sql)
+	sql2    = "insert into `Goods` (`goods_location`,`goods_name`, `goods_site`, `price`) values('"+fileitem.filename+"','"+title+"','./"+title+".cgi', '"+price+"');"
+	cursor.execute(sql2)
 	
 	connection.commit()        
 	connection.close()
 	
-	filepath = os.path.join(target_dir, fileitem.filename)
+	filepath = os.path.join("./Goods_Photo/", fileitem.filename)
 	with open(filepath, "wb") as f:
 		f.write(fileitem.file.read())
 		f.seek(0)
+		
+	tempfile1 = ""
+	with open("./temp1.txt", "r") as f:
+		tempfile1 = f.read()
+	tempfile2 = ""
+	with open("./temp2.txt", "r") as f:
+		tempfile2 = f.read()
+	with open("./"+title+".cgi", "w") as f:
+		f.write(tempfile1)
+		f.write(tempfile2.format(fileitem.filename,title,title,title,price,status,address,mailsways,comments))
+		
+	tempfile3 = ""
+	with open("./temp3.txt", "r") as f:
+		tempfile3 = f.read()
+	tempfile4 = ""
+	with open("./temp4.txt", "r") as f:
+		tempfile4 = f.read()
 	
+	
+	with open("./"+title+"_cart.cgi", "w") as f:
+		f.write(tempfile3)
+		f.write(tempfile4.format(title,title))
+	
+	os.chmod("./"+title+".cgi",0o755)	
+	os.chmod("./"+title+"_cart.cgi",0o755)
 	
 	htmlText = """
 	<!DOCTYPE html">
