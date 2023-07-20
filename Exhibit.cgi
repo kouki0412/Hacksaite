@@ -185,7 +185,7 @@ elif ( os.environ['REQUEST_METHOD'] == "POST" ):
 		</head>
 		<body>
 			<p>出品完了しました！</p>
-			<a href='./top_page.cgi' alt = "トップページに戻る">
+			<a href='./top_page.cgi'>トップページに戻る</a>
 		</body>
 		
 	"""
