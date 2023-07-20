@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>新規登録結果</title>
-    <a href="top_page.cgi"><h1>
-    <img src= "ボタン/ボタン/サイトロゴComBuy.png" width="320"height="100">
-    </h1></a>
+    <h1><img src= "ComBuy.png" width="320"height="100"></h1>
     <style>
         body {
             background:linear-gradient(180deg, #000000 0%, #000000 30%, #fffaf0 30%, #fffaf0 100%);
@@ -84,4 +82,5 @@
     </div>
 </body>
 </html>
+
 

@@ -1,0 +1,25 @@
+
+cursor = connection.cursor()
+sql = "insert into `cart` (`User_id`, `goods_name`,`goods_site`,`price`) VALUES('"+userid+"','{0}','./{1}.cgi',200);"
+cursor.execute(sql)
+connection.commit()
+connection.close()
+
+
+form = cgi.FieldStorage()
+
+htmlText = '''
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Python Form</title>
+</head>
+<body>
+<p>カートに追加しました。</p>
+<nobr><a href='./cart.cgi'>カートへ</a></nobr>
+</body>
+</html>
+    '''
+print(htmlText.encode("utf-8", 'ignore').decode('utf-8'))
+

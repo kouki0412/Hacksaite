@@ -1,0 +1,22 @@
+htmlText = '''
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Python Form</title>
+</head>
+<body>
+<img src="./Goods_Photo/{0}" width="300"height="230"/>
+<a href='./{1}_cart.cgi'><img src='./button/add.png' width='50'height='50' alt='カートに追加'/></a>
+<nobr><a href='./{2}_cart.cgi'>カートに追加</a></nobr>
+<br>商品名:{3}</br>
+<br>値段:{4}</br>
+<br>状態:{5}</br>
+<br>地域:{6}</br>
+<br>配達方法:{7}</br>
+<br>商品説明:{8}</br>
+</body>
+</html>
+    '''
+print(htmlText.encode("utf-8", 'ignore').decode('utf-8'))
+

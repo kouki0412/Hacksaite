@@ -37,11 +37,13 @@ if ( os.environ['REQUEST_METHOD'] == "GET"):
 	<!DOCTYPE html">
 		<html lang="ja">
 		<head>
-			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 			<meta charset="utf-8">
-			
+ 			<a href="top_page.cgi">
+			<link rel="stylesheet" type="text/css" href="exhibit.css"/>
+			<h1><img src= "./button/ComBuy.png" width="320" heighr ="100"></h1></a>
 		</head>
 		<body>	
+		<div class="container">
 			<style>
 				textarea {
 				resize: None;
@@ -146,6 +148,7 @@ if ( os.environ['REQUEST_METHOD'] == "GET"):
 						
 			<input type="submit" value="出品する">
 			</form>
+			</div>
 		</body>
 		
 	"""
@@ -205,7 +208,9 @@ elif ( os.environ['REQUEST_METHOD'] == "POST" ):
 		<html lang="ja">
 		<head>
 			<meta charset="utf-8">
-			
+ 			<a href="top_page.cgi">
+			<link rel="stylesheet" type="text/css" href="exhibit.css"/>
+			<h1><img src= "button/ComBuy.png" width="320" heighr ="100"></h1></a>
 		</head>
 		<body>
 			<p>出品完了しました！</p>

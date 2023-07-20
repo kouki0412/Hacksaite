@@ -23,8 +23,7 @@ if (!$user) {
 $userid = $user['id'];
 
 // クレジットカード情報を検索
-$sql = $pdo->prepare("SELECT * FROM credit_cards WHERE userid = :userid");
-$sql->bindValue(':userid', $userid, PDO::PARAM_STR);
+$sql = $pdo->prepare("SELECT * FROM credit_cards WHERE userid = " . $userid);
 $sql->execute();
 $existingCard = $sql->fetch(PDO::FETCH_ASSOC);
 

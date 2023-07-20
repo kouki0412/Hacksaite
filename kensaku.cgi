@@ -9,11 +9,14 @@ cookie = cookies.SimpleCookie(os.environ.get('HTTP_COOKIE',''))
 
 try:
 
-	userid = cookie["userid"].value
+	userid = cookie["userid"].value+"さん"
 
 except KeyError:
 
 	userid = 'please_login'
+
+form = cgi.FieldStorage()
+word=form.getfirst("search")
 
 connection = MySQLdb.connect(
 
@@ -31,16 +34,17 @@ connection = MySQLdb.connect(
 
 cursor = connection.cursor()
 
-cursor.execute("select * from cart")
+cursor.execute("select * from Goods")
 
 rows = cursor.fetchall()
-cart_list = str()
-cart_num = 0
+goods_list = str()
+goods_name = str()
 for row in rows:
-    if row[0]==userid:
-        cart = "<br><a href='"+row[2]+"'>"+row[1]+str(row[3])+"円</a></br>"
-        cart_list+=cart
-        cart_num += 1
+    good = "<a href='"+row[3]+"'><img src='./Goods_Photo/"+row[1]+"' width='180'height='150' alt='検索'/></a>"
+    if row[2]==word:
+        goods_list+=good
+        goods_name+=row[2]
+len_goodslist=len(goods_list)
 connection.close()
 print("Content-Type: text/html\n")
 if userid == "please_login":
@@ -51,7 +55,7 @@ if userid == "please_login":
     <head>
     <meta charset="utf-8">
     <title>ComBuy</title>
-    <link rel="stylesheet" type="text/css" href="cart.css"/>
+    <link rel="stylesheet" type="text/css" href="cushion.css"/>
     <!--
     h1 { color:green }
     strong { color: blue; font-size: large }
@@ -95,7 +99,7 @@ else:
     <head>
     <meta charset="utf-8">
     <title>ComBuy</title>
-    <link rel="stylesheet" type="text/css" href="cart.css"/>
+    <link rel="stylesheet" type="text/css" href="cushion.css"/>
     <!--
     h1 { color:green }
     strong { color: blue; font-size: large }
@@ -117,7 +121,7 @@ else:
 
     <form id="mainform">
     <div class="logo"><button type="submit" onclick="multipleaction('./top_page.cgi')" alt="topに戻る"><img src= "./button/ComBuy.png" width="320"height="100"></button></div>
-    <h1>%sさん</h1>
+    <h1>%s</h1>
     <input type="search" name="search" placeholder="キーワードを入力">
     <button type="submit" onclick="multipleaction('./top_page.cgi')"><img src="./button/search_button.png" width="50"height="30" alt="検索" /></button> 
     <div class="btn"><button type="button" onclick="multipleaction('./rireki.cgi')"><img src="./button/rireki.png" width="70"height="70" alt="購入履歴" /></button>
@@ -132,6 +136,7 @@ else:
 print(htmlText.encode("utf-8", 'ignore').decode('utf-8'))
 
 form = cgi.FieldStorage()
+
 htmlText = '''
 <!DOCTYPE html>
 <html lang="ja">
@@ -140,13 +145,9 @@ htmlText = '''
 <title>Python Form</title>
 </head>
 <body>
-<br>カートの中身:%s件</br>
 %s
-<br><a href="./reset.cgi">カートの中身を削除</a></br>
-<br><a href="./buy.cgi">購入</a></br>
+%s
 </body>
 </html>
-    '''%(cart_num,cart_list)
+    '''%(goods_list,goods_name)
 print(htmlText.encode("utf-8", 'ignore').decode('utf-8'))
-
-

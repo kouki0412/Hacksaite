@@ -4,9 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>クレジットカード登録</title>
-    <link rel="stylesheet" type="text/css" href="credit_card.css"/>
-    <h1><img src= "./button/ComBuy.png" width="320" heighr ="100"></h1>
+    <h1><img src= "./button/ComBuy.png" width="320"height="100"></h1>
     <style>
+        body {
+            background:linear-gradient(180deg, #000000 0%, #000000 24.5%, #fffaf0 24.5%, #fffaf0 100%);
+            background-repeat:no-repeat;
+            font-family: Arial, sans-serif;
+            background-color:#fffaf0;
+        }
+
         .container {
             max-width: 400px;
             margin: 0 auto;
@@ -29,6 +35,7 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
+            color: #555;
         }
 
         .form-group input[type="text"],
@@ -58,23 +65,28 @@
 </head>
 <body>
     <div class="container">
-        <h1>クレジットカード登録</h1>
-        <form action="credit_card_process.php" method="post">
+        <h1>住所登録</h1>
+        <form action="address_process.php" method="post">
+            <input type="hidden" name="userid" value="<?php echo $_COOKIE['userid']; ?>">
             <div class="form-group">
-                <label for="card_number">カード番号</label>
-                <input type="text" id="card_number" name="card_number" required>
+                <label for="yuubinbangou">郵便番号</label>
+                <input type="text" id="yuubinbangou" name="yuubinbangou" required>
             </div>
             <div class="form-group">
-                <label for="expiration_date">有効期限</label>
-                <input type="text" id="expiration_date" name="expiration_date" required>
+                <label for="todouhuken">都道府県名</label>
+                <input type="text" id="todouhuken" name="todouhuken" required>
             </div>
             <div class="form-group">
-                <label for="security_code">セキュリティコード</label>
-                <input type="text" id="security_code" name="security_code" required>
+                <label for="sikutyouson">市区町村</label>
+                <input type="text" id="sikutyouson" name="sikutyouson" required>
+	    </div>
+            <div class="form-group">
+                <label for="banchi">番地</label>
+                <input type="text" id="banchi" name="banchi" required>
             </div>
             <input type="submit" value="登録">
         </form>
-        <a class="back-link" href="top_page.cgi">戻る</a>
+        <a class="back-link" href="top_page.cgi">トップへ戻る</a>
     </div>
 </body>
 </html>
