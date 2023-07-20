@@ -9,7 +9,7 @@ cookie = cookies.SimpleCookie(os.environ.get('HTTP_COOKIE',''))
 
 try:
 
-	userid = cookie["userid"].value+"さん"
+	userid = cookie["userid"].value
 
 except KeyError:
 
@@ -31,18 +31,16 @@ connection = MySQLdb.connect(
 
 cursor = connection.cursor()
 
-cursor.execute("select * from Goods")
+cursor.execute("select * from buy")
 
 rows = cursor.fetchall()
-goods_list = []
-goods_name = []
-all_goods = str()
+cart_list = str()
+cart_num = 0
 for row in rows:
-    good = "<a href='"+row[3]+"'><img src='./Goods_Photo/"+row[1]+"' width='180'height='150' alt='検索'/></a>"
-    goods_list.append(good)
-    all_goods += good + " "+row[2]+" "
-    goods_name.append(row[2])
-len_goodslist=len(goods_list)
+    if row[0]==userid:
+        cart = "<br><a href='"+row[2]+"'>"+row[1]+str(row[3])+"円</a></br>"
+        cart_list+=cart
+        cart_num += 1
 connection.close()
 print("Content-Type: text/html\n")
 if userid == "please_login":
@@ -56,7 +54,7 @@ if userid == "please_login":
     <style type="text/css">
     <!--
     h1 { color:green }
-    strong { color: red; font-size: large }
+    strong { color: blue; font-size: large }
     em { font-style: Italic }
     -->
     button {
@@ -110,7 +108,7 @@ else:
     <style type="text/css">
     <!--
     h1 { color:green }
-    strong { color: red; font-size: large }
+    strong { color: blue; font-size: large }
     em { font-style: Italic }
     -->
     button {
@@ -139,13 +137,12 @@ else:
 
     <form id="mainform">
     <button type="submit" onclick="multipleaction('./top_page.cgi')" alt="topに戻る"><img src= "./button/ComBuy.png" width="320"height="100"></button>
-    <a href="purchase_confirm.php"><h1>%s</h1></a>
+    <h1>%sさん</h1>
     <input type="search" name="search" placeholder="キーワードを入力">
     <button type="submit" onclick="multipleaction('./top_page.cgi')"><img src="./button/search_button.png" width="50"height="30" alt="検索" /></button> 
-    <button type="button" onclick="multipleaction('./rireki.cgi')"><img src="./button/rireki.png" width="50"height="50" alt="購入履歴" /></button>
+    <button type="button" onclick="multipleaction('./top_page.cgi')"><img src="./button/rireki.png" width="50"height="50" alt="購入履歴" /></button>
     <button type="button" onclick="multipleaction('./Exhibit.cgi')"><img src="./button/syuppin.png" width="50"height="50" alt="出品する" /></button>
     <button type="button" onclick="multipleaction('./cart.cgi')"><img src="./button/cart.png" width="50"height="50" alt="カート" /></button>
-    <a href="credit_card.php">クレジットカードの登録はこちら</a>
     </form>
     </body>
     
@@ -155,7 +152,6 @@ else:
 print(htmlText.encode("utf-8", 'ignore').decode('utf-8'))
 
 form = cgi.FieldStorage()
-
 htmlText = '''
 <!DOCTYPE html>
 <html lang="ja">
@@ -164,31 +160,10 @@ htmlText = '''
 <title>Python Form</title>
 </head>
 <body>
-<br><strong>新着top10</strong></br>
-%s
-%s
-%s
-%s
-%s
-%s
-%s
-%s
-%s
-%s
-%s
-%s
-%s
-%s
-%s
-%s
-%s
-%s
-%s
-%s
-<br><strong>全商品一覧</strong></br>
+<br>購入履歴</br>
 %s
 </body>
 </html>
-    '''%(goods_list[len_goodslist-1],goods_name[len_goodslist-1],goods_list[len_goodslist-2],goods_name[len_goodslist-2],goods_list[len_goodslist-3],goods_name[len_goodslist-3],goods_list[len_goodslist-4],goods_name[len_goodslist-4],goods_list[len_goodslist-5],goods_name[len_goodslist-5],goods_list[len_goodslist-6],goods_name[len_goodslist-6],goods_list[len_goodslist-7],goods_name[len_goodslist-7],goods_list[len_goodslist-8],goods_name[len_goodslist-8],goods_list[len_goodslist-9],goods_name[len_goodslist-9],goods_list[len_goodslist-10],goods_name[len_goodslist-10],all_goods)
+    '''%(cart_list)
 print(htmlText.encode("utf-8", 'ignore').decode('utf-8'))
 
