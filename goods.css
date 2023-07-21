@@ -1,13 +1,13 @@
 
-
 body {
-    background:linear-gradient(180deg, #000000 0%, #000000, 180px, #fffaf0 180px, #fffaf0 100%);
+    background:linear-gradient(180deg, #000000 0%, #000000, 35%, #fffaf0 35%, #fffaf0 100%);
     background-repeat:no-repeat;
     font-family: Arial, sans-serif;
     background-color: #fffaf0;
     }
     
-
+    
+    
 h1 {
     text-align: center;
     color: green;
@@ -88,7 +88,6 @@ flex-wrap: wrap;
 }
 input[type="search"] {
   vertical-align: middle;
-  width:45%;
+  width:55%;
   height: 30px" 
 }
-

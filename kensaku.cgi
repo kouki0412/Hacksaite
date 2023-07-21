@@ -55,7 +55,7 @@ if userid == "please_login":
     <head>
     <meta charset="utf-8">
     <title>ComBuy</title>
-    <link rel="stylesheet" type="text/css" href="cushion.css"/>
+    <link rel="stylesheet" type="text/css" href="goods.css"/>
     <!--
     h1 { color:green }
     strong { color: blue; font-size: large }
@@ -99,7 +99,7 @@ else:
     <head>
     <meta charset="utf-8">
     <title>ComBuy</title>
-    <link rel="stylesheet" type="text/css" href="cushion.css"/>
+    <link rel="stylesheet" type="text/css" href="goods.css"/>
     <!--
     h1 { color:green }
     strong { color: blue; font-size: large }

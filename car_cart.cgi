@@ -61,7 +61,7 @@ if userid == "please_login":
     <button type="button" onclick="multipleaction('./register.php')"><img src="./button/sign_up.png" width="50"height="50" alt="新規登録" /></button>
     <button type="button" onclick="multipleaction('./top_page.cgi')"><img src="./button/rireki.png" width="50"height="50" alt="購入履歴" /></button>
     <button type="button" onclick="multipleaction('./Exhibit.cgi')"><img src="./button/syuppin.png" width="50"height="50" alt="出品する" /></button>
-    <button type="button" onclick="multipleaction('./purchase_confirmation.php')"><img src="./button/cart.png" width="50"height="50" alt="カート" /></button>
+    <button type="button" onclick="multipleaction('./cart.cgi')"><img src="./button/cart.png" width="50"height="50" alt="カート" /></button>
     </form>
     </body>
     
@@ -96,7 +96,7 @@ else:
     <button type="submit" onclick="multipleaction('./top_page.cgi')"><img src="./button/search_button.png" width="50"height="30" alt="検索" /></button> 
     <button type="button" onclick="multipleaction('./top_page.cgi')"><img src="./button/rireki.png" width="50"height="50" alt="購入履歴" /></button>
     <button type="button" onclick="multipleaction('./Exhibit.cgi')"><img src="./button/syuppin.png" width="50"height="50" alt="出品する" /></button>
-    <button type="button" onclick="multipleaction('./purchase_confirmation.php')"><img src="./button/cart.png" width="50"height="50" alt="カート" /></button>
+    <button type="button" onclick="multipleaction('./cart.cgi')"><img src="./button/cart.png" width="50"height="50" alt="カート" /></button>
     </form>
     </body>
     

@@ -1,7 +1,20 @@
 <!-- credit_card_process.php -->
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="credit_card.css"/>
+    <h1><img src= "./button/ComBuy.png" width="320" heighr ="100"></h1>
+<head>
+<body>
 <?php
 session_start();
-
+// もうどうにでもなーれ
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
 // ログインしているユーザ情報を確認
 if (!isset($_COOKIE['userid'])) {
     // ユーザがログインしていない場合はリダイレクトなどの処理を行う
@@ -54,3 +67,5 @@ try {
     echo '<a href="touroku.php">住所登録画面へ</a>';
 }
 ?>
+</body>
+</html>

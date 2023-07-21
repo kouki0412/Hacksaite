@@ -53,6 +53,7 @@ if userid == "please_login":
     <head>
     <meta charset="utf-8">
     <title>ComBuy</title>
+    <link rel="stylesheet" type="text/css" href="goods.css"/>
     <style type="text/css">
     <!--
     h1 { color:green }
@@ -163,6 +164,25 @@ htmlText = '''
 <head>
 <meta charset="utf-8">
 <title>Python Form</title>
+<link rel="stylesheet" type="text/css" href="goods.css"/>
+   <style type="text/css">
+    <!--
+    h1 { color:green }
+    strong { color: red; font-size: large }
+    em { font-style: Italic }
+    -->
+    button {
+        width: auto;
+        padding:0;
+        margin:0;
+        background:none;
+        border:0;
+        font-size:0;
+        line-height:0;
+        overflow:visible;
+        cursor:pointer;
+    }
+    </style>
 </head>
 <body>
 <br><strong>新着top10</strong></br>
